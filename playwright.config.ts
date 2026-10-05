@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 /**
  * Read environment variables from file.
- * https://github.com/motdotla/dotenv
+ * https://github.com/motdotla/dotenvs
  */
 // import dotenv from 'dotenv';
 // import path from 'path';
@@ -12,6 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  timeout: 20_000,
   testDir: './playwright/e2e',
   /* Run tests in files in parallel */
   fullyParallel: true,

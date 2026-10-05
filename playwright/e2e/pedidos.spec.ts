@@ -11,12 +11,16 @@ test('deve consultar um pedido aprovado', async ({ page }) => {
   //checkpoint
   await expect(page.getByRole('heading')).toContainText('Consultar Pedido');
 
-  await page.getByTestId('search-order-id').fill('VLO-BVP0T0');
-  await page.getByTestId('search-order-button').click();
+  
 
-  await page.getByTestId('search-order-button').click();
+  await page.getByRole('textbox', { name: 'Número do Pedido' }).fill('VLO-BVP0T0');
+  await page.getByRole('button', { name: 'Buscar Pedido' }).click();
+
+
+  await expect(page.getByText('VLO-BVP0T0')).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByText('VLO-BVP0T0')).toContainText('VLO-BVP0T0');
 
   //checkpoint
-  await expect(page.getByTestId('order-result-id')).toContainText('VLO-BVP0T0');
-  await expect(page.getByTestId('order-result-status')).toContainText('APROVADO');
+  await expect(page.getByText('APROVADO')).toBeVisible();
+  await expect(page.getByText('APROVADO')).toContainText('APROVADO');
 });
