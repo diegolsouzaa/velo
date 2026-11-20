@@ -1,3 +1,5 @@
+import { Page } from '@playwright/test';
+
 export function generateOrderCode() {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const numbers = '0123456789';
@@ -18,3 +20,11 @@ export function generateOrderCode() {
   const order = generateOrderCode();
   
   console.log(order); // Exemplo: VLO-ABC123
+
+  
+
+
+export async function searchOrder(page: Page, orderNumber: string) {
+  await page.getByRole('textbox', { name: 'Código do Pedido' }).fill(orderNumber);
+  await page.getByRole('button', { name: 'Buscar Pedido' }).click();
+}
